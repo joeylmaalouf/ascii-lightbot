@@ -5,7 +5,7 @@ class LightBot(object):
 	def __init__(self, directions):
 		super(LightBot, self).__init__()
 		self.moves = list(directions)
-		self.location = (0, 0)
+		self.position = (0, 0)
 		self.bearing = 'N'
 		self.height = 0
 
@@ -24,8 +24,10 @@ class LightBot(object):
 			self.turnRight()
 		elif direction == 'u':
 			self.jumpUp()
+			self.moveForward()
 		elif direction == 'j':
 			self.jumpDown()
+			self.moveForward()
 		else:
 			print "Unknown direction: ", direction
 
@@ -88,5 +90,4 @@ class LightBot(object):
 
 	def jumpDown():
 		self.height = self.height - 1
-
 
