@@ -9,11 +9,11 @@ class LightBot(object):
 		self.bearing = 'N'
 		self.height = 0
 
-	def travel():
-		for direction in self.directions:
+	def travel(self):
+		for direction in self.moves:
 			self.handleDirection(direction)
 
-	def handleDirection(direction):
+	def handleDirection(self, direction):
 		if direction == 'w':
 			self.moveForward()
 		elif direction == 's':
@@ -31,7 +31,7 @@ class LightBot(object):
 		else:
 			print "Unknown direction: ", direction
 
-	def moveForward():
+	def moveForward(self):
 		r, c = self.position
 		if self.bearing == "N":
 			r = r - 1
@@ -46,7 +46,7 @@ class LightBot(object):
 
 		self.position = (r, c)
 
-	def moveBackward():
+	def moveBackward(self):
 		r, c = self.position
 		if self.bearing == "N":
 			r = r + 1
@@ -61,7 +61,7 @@ class LightBot(object):
 
 		self.position = (r, c)
 
-	def turnLeft():
+	def turnLeft(self):
 		if self.bearing == "N":
 			self.bearing = "W"
 		elif self.bearing == "W":
@@ -73,7 +73,7 @@ class LightBot(object):
 		else:
 			print "Unknown bearing: ", self.bearing
 
-	def turnRight():
+	def turnRight(self):
 		if self.bearing == "N":
 			self.bearing = "E"
 		elif self.bearing == "E":
@@ -85,9 +85,15 @@ class LightBot(object):
 		else:
 			print "Unknown bearing: ", self.bearing
 
-	def jumpUp():
+	def jumpUp(self):
 		self.height = self.height + 1
 
-	def jumpDown():
+	def jumpDown(self):
 		self.height = self.height - 1
 
+if __name__ == "__main__":
+	p = LightBot('wwdwwuuw')
+	print p.position
+	p.travel()
+	print p.position
+	print p.height
