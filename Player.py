@@ -6,11 +6,11 @@ class LightBot(object):
 		super(LightBot, self).__init__()
 		self.moves = list(directions)
 		self.location = (0, 0)
-		self.direction = 'N'
+		self.bearing = 'N'
 		self.height = 0
 
 	def travel():
-		for direction in directions:
+		for direction in self.directions:
 			self.handleDirection(direction)
 
 	def handleDirection(direction):
@@ -31,57 +31,57 @@ class LightBot(object):
 
 	def moveForward():
 		r, c = self.position
-		if self.direction == "N":
+		if self.bearing == "N":
 			r = r - 1
-		elif self.direction == "E":
+		elif self.bearing == "E":
 			c = c + 1
-		elif self.direction == "S":
+		elif self.bearing == "S":
 			r = r + 1
-		elif self.direction == "W":
+		elif self.bearing == "W":
 			c = c - 1
 		else:
-			print "Unknown direction: ", self.direction
+			print "Unknown bearing: ", self.bearing
 
 		self.position = (r, c)
 
 	def moveBackward():
 		r, c = self.position
-		if self.direction == "N":
+		if self.bearing == "N":
 			r = r + 1
-		elif self.direction == "E":
+		elif self.bearing == "E":
 			c = c - 1
-		elif self.direction == "S":
+		elif self.bearing == "S":
 			r = r - 1
-		elif self.direction == "W":
+		elif self.bearing == "W":
 			c = c + 1
 		else:
-			print "Unknown direction: ", self.direction
+			print "Unknown bearing: ", self.bearing
 
 		self.position = (r, c)
 
 	def turnLeft():
-		if self.direction == "N":
-			self.direction = "W"
-		elif self.direction == "W":
-			self.direction = "S"
-		elif self.direction == "S":
-			self.direction = "E"
-		elif self.direction == "E":
-			self.direction = "N"
+		if self.bearing == "N":
+			self.bearing = "W"
+		elif self.bearing == "W":
+			self.bearing = "S"
+		elif self.bearing == "S":
+			self.bearing = "E"
+		elif self.bearing == "E":
+			self.bearing = "N"
 		else:
-			print "Unknown direction: ", self.direction
+			print "Unknown bearing: ", self.bearing
 
 	def turnRight():
-		if self.direction == "N":
-			self.direction = "E"
-		elif self.direction == "E":
-			self.direction = "S"
-		elif self.direction == "S":
-			self.direction = "W"
-		elif self.direction == "W":
-			self.direction = "N"
+		if self.bearing == "N":
+			self.bearing = "E"
+		elif self.bearing == "E":
+			self.bearing = "S"
+		elif self.bearing == "S":
+			self.bearing = "W"
+		elif self.bearing == "W":
+			self.bearing = "N"
 		else:
-			print "Unknown direction: ", self.direction
+			print "Unknown bearing: ", self.bearing
 
 	def jumpUp():
 		self.height = self.height + 1
