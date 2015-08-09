@@ -6,7 +6,7 @@ class LightBot(object):
 		super(LightBot, self).__init__()
 		self.moves = list(directions)
 		self.position = (0, 0)
-		self.bearing = 'N'
+		self.bearing = "N"
 		self.height = 0
 
 	def travel(self):
@@ -14,18 +14,18 @@ class LightBot(object):
 			self.handleDirection(direction)
 
 	def handleDirection(self, direction):
-		if direction == 'w':
+		if direction == "w":
 			self.moveForward()
-		elif direction == 's':
+		elif direction == "s":
 			self.moveBackward()
-		elif direction == 'a':
+		elif direction == "a":
 			self.turnLeft()
-		elif direction == 'd':
+		elif direction == "d":
 			self.turnRight()
-		elif direction == 'u':
+		elif direction == "u":
 			self.jumpUp()
 			self.moveForward()
-		elif direction == 'j':
+		elif direction == "j":
 			self.jumpDown()
 			self.moveForward()
 		else:
@@ -92,7 +92,7 @@ class LightBot(object):
 		self.height = self.height - 1
 
 if __name__ == "__main__":
-	p = LightBot('wwdwwuuw')
+	p = LightBot("wwdwwuuw")
 	print p.position
 	p.travel()
 	print p.position

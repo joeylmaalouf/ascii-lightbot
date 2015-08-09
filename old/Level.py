@@ -1,5 +1,6 @@
 import sys
 
+
 class Level(object):
 	""" The Level object, representing
 		the state of the game board.
