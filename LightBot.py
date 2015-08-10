@@ -28,9 +28,15 @@ class Level(object):
 
 	def __getitem__(self, index):
 		if type(index) == type([]):
-			return self.grid[index[0]][index[1]]
-		# for convenience
-		return self.grid[index]
+			return self.grid[index[0]][index[1]] # it's unnecessary to do so, but maybe find a way to extend this for n dimensions?
+		else:
+			return self.grid[index]
+
+	def __setitem__(self, index, value):
+		if type(index) == type([]):
+			self.grid[index[0]][index[1]] = value
+		else:
+			self.grid[index] = value
 
 
 class Player(object):
@@ -54,10 +60,10 @@ class Player(object):
 		return self
 
 	def show_on_level(self):
-		tmp = self.level[self.pos[0]][self.pos[1]]
-		self.level[self.pos[0]][self.pos[1]] = "P"
+		tmp = self.level[self.pos]
+		self.level[self.pos] = "P"
 		print(self.level)
-		self.level[self.pos[0]][self.pos[1]] = tmp
+		self.level[self.pos] = tmp
 		return self
 
 	def move(self, moves):
@@ -98,6 +104,7 @@ class Player(object):
 if __name__ == "__main__":
 	p = Player().use_level("levels/level00.txt")
 	p.show_on_level()
-	p.move("ww")
 	print("")
+	p.move("ww")
 	p.show_on_level()
+	print("")
