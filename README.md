@@ -1,2 +1,3 @@
 # ascii-lightbot
-ASCII LightBot
+
+An ASCII version of LightBot.
