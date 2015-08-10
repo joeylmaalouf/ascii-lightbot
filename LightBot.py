@@ -10,9 +10,8 @@ class Level(object):
 	def __init__(self):
 		super(Level, self).__init__()
 
-	def fromfile(self, path = "levels/level00.txt", verbose = False):
-		if verbose:
-			print("\nLoading level from {0}...".format(path))
+	def fromfile(self, path = "levels/level00.txt"):
+		print("\nLoading level from {0}...".format(path))
 		with open(path, "r") as f:
 			s = f.read().replace(" ", "").replace("\t", "")
 		grid = [list(row) for row in s.split("\n")]
@@ -28,8 +27,7 @@ class Level(object):
 				elif col == "E": # goal
 					self.goal = (y, x)
 		self.grid = grid
-		if verbose:
-			print("Finished loading level.\n")
+		print("Finished loading level.\n")
 		return self
 
 	def __str__(self):
@@ -97,12 +95,12 @@ class Player(object):
 
 
 class Game(object):
-	def __init__(self, player, level):
+	def __init__(self, level):
 		super(Game, self).__init__()
-		self.player = player
-		self.level = level
-		self.bounds = ((0, level.rows-1), (0, level.cols-1))
-		self.player.pos = list(level.player_start)
+		self.player = Player()
+		self.level = Level().fromfile(level)
+		self.bounds = ((0, self.level.rows-1), (0, self.level.cols-1))
+		self.player.pos = list(self.level.player_start)
 
 	def show_help(self):
 		print("Controls:")
@@ -121,7 +119,7 @@ class Game(object):
 
 	def run(self):
 		self.show_help()
-		raw_input("Press enter to start the game.\n")
+		raw_input("Press Enter to start the game.\n")
 		while not self.player.reached_goal:
 			self.display()
 			self.player.move(moves = raw_input("\nMove(s): "), level = self.level)
@@ -131,8 +129,5 @@ class Game(object):
 
 
 if __name__ == "__main__":
-	level = argv[1] if len(argv) > 1 else "0"
-	p = Player()
-	l0 = Level().fromfile("levels/level{0:0>2}.txt".format(level), verbose = True)
-	g = Game(p, l0)
-	g.run()
+	level = "levels/level{0:0>2}.txt".format(argv[1] if len(argv) > 1 else "0")
+	g = Game(level).run()
